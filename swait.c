@@ -72,7 +72,7 @@ static int _job_wait(uint32_t job_id)
         fprintf(stderr, "Unable to get minimum job age");
         return SLURM_ERROR;
     }
-    uint32_t min_job_age = (uint32_t)(min_job_age & 0xFFFFFFFF);
+    uint32_t min_job_age = (uint32_t)(_min_job_age & 0xFFFFFFFF);
 
     while (!complete) {
         complete = true;
