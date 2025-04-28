@@ -69,7 +69,7 @@ static int _job_wait(uint32_t job_id)
     bool complete = false;
     int64_t _min_job_age = _get_min_job_age();
     if (_min_job_age == SLURM_ERROR) {
-        fprintf(stderr, "Unable to get minimum job age");
+        fprintf(stderr, "Unable to get minimum job age\n");
         return SLURM_ERROR;
     }
     uint32_t min_job_age = (uint32_t)(_min_job_age & 0xFFFFFFFF);
@@ -107,12 +107,12 @@ static int _job_wait(uint32_t job_id)
         } else if (rc == ESLURM_INVALID_JOB_ID) {
             fprintf(
                 stderr, 
-                "Job %u no longer found and exit code not found",
+                "Job %u no longer found and exit code not found\n",
                 job_id);
                 return SLURM_ERROR;
         } else {
             complete = false;
-            fprintf(stderr, "Currently unable to load job state information, retrying: %m");
+            fprintf(stderr, "Currently unable to load job state information, retrying: %m\n");
         }
     }
 
