@@ -123,7 +123,10 @@ int main(int argc, char* argv[]) {
     if (argc != 2) {
         return -1;
     }
+    slurm_init(NULL);
     char *end_ptr = NULL;
     uint32_t job_id = strtoul(argv[1], &end_ptr, 10);
-    return  _job_wait(job_id);
+    int ec = _job_wait(job_id);
+    slurm_fini();
+    return ec;
 }
